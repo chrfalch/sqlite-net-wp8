@@ -84,6 +84,9 @@ int Sqlite3::sqlite3_open(String^ filename, Database^* db)
 
 int Sqlite3::sqlite3_open_v2(String^ filename, Database^* db, int flags, String^ zVfs)
 {
+	int r = ::sqlite3_config(SQLITE_CONFIG_SERIALIZED);
+	int rr = ::sqlite3_threadsafe();
+
     auto filename_buffer = convert_to_utf8_buffer(filename);
     auto zVfs_buffer = convert_to_utf8_buffer(zVfs);
 
